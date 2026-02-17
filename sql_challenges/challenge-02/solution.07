@@ -1,0 +1,13 @@
+1.SELECT  Building
+FROM employees
+Join Buildings
+On Buildings.building_name=Employees.building
+WHERE Capacity>0 
+
+2.SELECT distinct Building_name, capacity
+FROM buildings
+
+3.SELECT distinct Role, Building_name
+FROM Buildings
+ Left Join Employees
+On Buildings.building_name=Employees.building
