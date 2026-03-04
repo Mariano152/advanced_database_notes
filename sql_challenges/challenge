@@ -1,0 +1,61 @@
+ALTER TABLE bricks
+ADD colour VARCHAR2(10);
+3.SELECT 
+    b.id,
+    b.colour,
+    b.shape,
+    b.weight,
+    COUNT(*) OVER (
+        PARTITION BY shape
+    ) AS bricks_per_shape,
+    MEDIAN(weight) OVER (
+        PARTITION BY shape
+    ) AS median_weight_per_shape
+FROM bricks b
+ORDER BY shape, weight, id;
+5.SELECT
+    b.id,
+    b.colour,
+    b.weight,
+    ROUND(
+        AVG(weight) OVER (
+            ORDER BY id
+        ), 2
+    ) AS running_average_weight
+FROM bricks b
+ORDER BY id;
+9.SELECT
+    b.id,
+    b.colour,
+    b.shape,
+    b.weight,
+    MIN(colour) OVER (
+        ORDER BY id
+        ROWS BETWEEN 2 PRECEDING AND 1 PRECEDING
+    ) AS first_colour_two_prev,
+    COUNT(*) OVER (
+        ORDER BY weight
+        RANGE BETWEEN CURRENT ROW AND 1 FOLLOWING
+    ) AS count_values_this_and_next
+FROM bricks b
+ORDER BY weight;
+11.WITH totals AS (
+    SELECT
+        b.id,
+        b.colour,
+        b.shape,
+        b.weight,
+        SUM(weight) OVER (
+            PARTITION BY shape
+        ) AS weight_per_shape,
+        SUM(weight) OVER (
+            ORDER BY id
+        ) AS running_weight_by_id
+    FROM bricks b
+)
+
+SELECT *
+FROM totals
+WHERE weight_per_shape > 4
+AND running_weight_by_id > 4
+ORDER BY id;
