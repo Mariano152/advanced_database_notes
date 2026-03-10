@@ -1,0 +1,25 @@
+1.CREATE TABLE bricks (
+    id NUMBER,
+    shape VARCHAR2(20),
+    weight NUMBER
+);
+INSERT INTO bricks VALUES (1,'cube',1);
+INSERT INTO bricks VALUES (2,'cube',1);
+INSERT INTO bricks VALUES (3,'sphere',2);
+INSERT INTO bricks VALUES (4,'sphere',2);
+INSERT INTO bricks VALUES (5,'pyramid',3);
+SELECT
+    COUNT(DISTINCT shape) AS number_of_shapes,
+    STDDEV(DISTINCT weight) AS distinct_weight_stddev
+FROM bricks;
+2.SELECT
+    shape,
+    SUM(weight) AS shape_weight
+FROM bricks
+GROUP BY shape;
+3.SELECT
+    shape,
+    SUM(weight)
+FROM bricks
+GROUP BY shape
+HAVING SUM(weight) < 4;

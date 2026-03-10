@@ -1,0 +1,8 @@
+1.SELECT Max(Years_employed) as years_employed, *
+from employees
+2.SELECT   Avg(years_employed ) as years_employed ,*
+from employees
+group by role
+3.select sum(Years_employed) ,*
+from employees 
+group by building 

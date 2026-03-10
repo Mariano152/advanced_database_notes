@@ -1,0 +1,9 @@
+1.SELECT role, COUNT()
+FROM employees 
+where Role= "Artist"
+2.SELECT role, COUNT()
+FROM employees
+GROUP BY role;
+3.SELECT  sum(years_employed)
+FROM employees 
+where role="Engineer"
