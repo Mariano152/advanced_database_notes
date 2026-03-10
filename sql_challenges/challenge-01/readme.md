@@ -1,1 +1,0 @@
-complete first 5 section on https://sqlbolt.com/
