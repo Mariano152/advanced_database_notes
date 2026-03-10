@@ -1,0 +1,22 @@
+1.select colour from MY_BRICK_COLLECTION
+UNION
+select colour from your_brick_collection
+order by colour;
+2.select shape from my_brick_collection
+Union all
+select shape from your_brick_collection
+order  by shape;
+
+3.select shape from my_brick_collection
+MINUS
+select shape from your_brick_collection;
+
+
+
+
+
+
+4.select colour from my_brick_collection
+INTERSECT
+select colour from your_brick_collection
+order by colour;
