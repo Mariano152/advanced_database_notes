@@ -1,5 +1,5 @@
 # Session – YYYY-MM-DD
-
+session18.02.2026
 ## Topics covered
 - Using SQL SELECT, WHERE, and LIKE to retrieve and filter data from tables.
 Sorting and limiting results with ORDER BY, LIMIT, and OFFSET, and removing duplicates with DISTINCT.
