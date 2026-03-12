@@ -1,0 +1,6 @@
+SELECT *
+FROM page_likes
+right Join  pages 
+ON pages.page_id=page_likes.page_id
+Where  user_id is  NULL
+Order by pages.page_id  ASC

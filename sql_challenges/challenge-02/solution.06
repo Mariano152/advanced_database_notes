@@ -1,0 +1,16 @@
+1.SELECT title,domestic_sales,international_sales
+from Boxoffice
+JOIN Movies
+On movies.id=boxoffice.movie_id
+
+2.SELECT title,domestic_sales,international_sales
+from Boxoffice
+JOIN Movies
+On movies.id=boxoffice.movie_id
+WHERE international_sales>domestic_sales
+
+3.SELECT title,domestic_sales,international_sales,rating
+from Boxoffice
+JOIN Movies
+On movies.id=boxoffice.movie_id
+order by Rating desc
