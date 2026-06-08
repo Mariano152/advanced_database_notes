@@ -4,16 +4,16 @@
 
 /* ------------------------------------------------------------
    1. Before insert trigger
-      - Assigns the current date/time to UPDATE_DATE.
-      - Assigns the current database user to UPDATED_BY_USER.
+      - Assigns the current date/time to LAST_UPDATE_DATETIME.
+      - Assigns the current database user to CREATED_BY_USER.
    ------------------------------------------------------------ */
 
 CREATE OR REPLACE TRIGGER trg_pet_care_log_bi
 BEFORE INSERT ON pet_care_log
 FOR EACH ROW
 BEGIN
-  :NEW.update_date := SYSDATE;
-  :NEW.updated_by_user := USER;
+  :NEW.last_update_datetime := SYSDATE;
+  :NEW.created_by_user := USER;
 EXCEPTION
   WHEN OTHERS THEN
     RAISE_APPLICATION_ERROR(
@@ -26,14 +26,14 @@ END;
 /* ------------------------------------------------------------
    2. Before update trigger
       - Allows updates only when the current user is the same
-        user stored in UPDATED_BY_USER.
+        user stored in CREATED_BY_USER.
    ------------------------------------------------------------ */
 
 CREATE OR REPLACE TRIGGER trg_pet_care_log_bu
 BEFORE UPDATE ON pet_care_log
 FOR EACH ROW
 BEGIN
-  IF USER <> :OLD.updated_by_user THEN
+  IF USER <> :OLD.created_by_user THEN
     RAISE_APPLICATION_ERROR(
       -20002,
       'Update denied. Users can update only records they created.'
